@@ -10,14 +10,10 @@ object Day01 {
         .first { it.sum() == 2020 }
         .product()
 
-    private fun List<Int>.toAllTuples(): Sequence<Pair<Int, Int>> {
-        val input = this
-
-        return sequence {
-            input.forEach { x ->
-                input.forEach { y ->
-                    yield(Pair(x, y))
-                }
+    private fun List<Int>.toAllTuples(): Sequence<Pair<Int, Int>> = sequence {
+        this@toAllTuples.forEach { x ->
+            this@toAllTuples.forEach { y ->
+                yield(Pair(x, y))
             }
         }
     }
@@ -26,12 +22,8 @@ object Day01 {
 
     private fun Pair<Int, Int>.product(): Int = first * second
 
-    private fun List<Int>.toAllTriples(): Sequence<Triple<Int, Int, Int>> {
-        val input = this
-
-        return input.toAllTuples()
-            .flatMap { (x, y) -> input.map { z -> Triple(x, y, z) } }
-    }
+    private fun List<Int>.toAllTriples(): Sequence<Triple<Int, Int, Int>> = this.toAllTuples()
+        .flatMap { (x, y) -> this.map { z -> Triple(x, y, z) } }
 
     private fun Triple<Int, Int, Int>.sum(): Int = first + second + third
 
