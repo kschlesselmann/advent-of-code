@@ -19,6 +19,7 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
     testImplementation("org.assertj:assertj-core:3.18.1")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
@@ -30,4 +31,8 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "15"
+
+    kotlinOptions.freeCompilerArgs = listOf(
+        "-Xopt-in=kotlin.time.ExperimentalTime"
+    )
 }
