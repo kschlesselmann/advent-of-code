@@ -9,6 +9,11 @@ object Input {
 
     fun asList(filename: String): List<String> = File(filename.toUri()).readLines()
 
+    fun String.toListOfString() = trim().split("\n".toRegex())
+
+    fun String.toListOfLong() = toListOfString()
+        .map { it.toLong() }
+
     private fun String.toUri(): URI = Input.javaClass.classLoader.getResource(this)?.toURI()
         ?: throw IllegalArgumentException("Cannot find input file: $this")
 
