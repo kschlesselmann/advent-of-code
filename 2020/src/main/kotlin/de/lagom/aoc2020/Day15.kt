@@ -9,15 +9,15 @@ object Day15 {
         .map { it.toLong() }
         .continueAsVanEckSequence()
         .take(2020)
-        .map { it.second }
+        .map { (_, numberSpoken) -> numberSpoken }
         .last()
 
     fun partTwo(input: String): Long = input.toListOfString()
         .flatMap { it.split(",") }
         .map { it.toLong() }
         .continueAsVanEckSequence()
-        .take(30000000)
-        .map { it.second }
+        .take(30_000_000)
+        .map { (_, numberSpoken) -> numberSpoken }
         .last()
 
     private fun List<Long>.continueAsVanEckSequence(): Sequence<Pair<Long, Long>> {
